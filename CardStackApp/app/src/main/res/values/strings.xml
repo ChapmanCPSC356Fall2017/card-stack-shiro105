@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CardStackApp</string>
+    <string name="A_symbol">A</string>
 </resources>
