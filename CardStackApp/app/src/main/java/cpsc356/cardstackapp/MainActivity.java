@@ -1,8 +1,12 @@
 package cpsc356.cardstackapp;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Collections;
@@ -23,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView top_iconDisplay;
     private ImageView bottom_iconDisplay;
     private ImageView center_iconDisplay;
-
+    private LinearLayout main_Layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         top_iconDisplay = (ImageView) findViewById(R.id.top_icon);
         center_iconDisplay = (ImageView) findViewById(R.id.center_icon);
         bottom_iconDisplay = (ImageView) findViewById(R.id.bottom_icon);
+        main_Layout = (LinearLayout) findViewById(R.id.activity_main);
 
         // Upon creation, the cardStack will have 52 cards in it
         int cardCount = 1;                      // Keeps track of the current iteration on the amount of cards per suit
@@ -58,42 +63,66 @@ public class MainActivity extends AppCompatActivity {
 
         // We then pop out the first Card
         displayCard();
+
+        // Whenever the user clicks anywhere on the screen, the next card will appear
+        main_Layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayCard();
+            }
+        });
     }
 
     // Displays a card to the screen
     private void displayCard()
     {
-        Card currentCard = cardStack.pop();
-        String cardValue = currentCard.getFaceCardValue();
-        Suit cardSuit = currentCard.getSuitType();
-        int cardImageResource = 0;
+        // If the card stack is empty, we exit the activity
+        if(!cardStack.isEmpty())
+        {
+            Card currentCard = cardStack.pop();
+            String cardValue = currentCard.getFaceCardValue();
+            Suit cardSuit = currentCard.getSuitType();
+            int cardImageResource = 0;
 
-        if(currentCard.getFaceCardValue().isEmpty())
-        {
-            cardValue = String.valueOf(currentCard.getCardNumber());
-        }
+            if(currentCard.getFaceCardValue().isEmpty())
+            {
+                cardValue = String.valueOf(currentCard.getCardNumber());
+            }
 
-        if(cardSuit == Suit.Club)
-        {
-            cardImageResource = R.drawable.club;
-        }
-        else if(cardSuit == Suit.Diamond)
-        {
-            cardImageResource = R.drawable.diamond;
-        }
-        else if(cardSuit == Suit.Heart)
-        {
-            cardImageResource = R.drawable.heart;
-        }
-        else if(cardSuit == Suit.Spade)
-        {
-            cardImageResource = R.drawable.spade;
-        }
+            if(cardSuit == Suit.Club)
+            {
+                cardImageResource = R.drawable.club;
+                top_valueDisplay.setTextColor(Color.BLACK);
+                bottom_valueDisplay.setTextColor(Color.BLACK);
+            }
+            else if(cardSuit == Suit.Diamond)
+            {
+                cardImageResource = R.drawable.diamond;
+                top_valueDisplay.setTextColor(Color.RED);
+                bottom_valueDisplay.setTextColor(Color.RED);
+            }
+            else if(cardSuit == Suit.Heart)
+            {
+                cardImageResource = R.drawable.heart;
+                top_valueDisplay.setTextColor(Color.RED);
+                bottom_valueDisplay.setTextColor(Color.RED);
+            }
+            else if(cardSuit == Suit.Spade)
+            {
+                cardImageResource = R.drawable.spade;
+                top_valueDisplay.setTextColor(Color.BLACK);
+                bottom_valueDisplay.setTextColor(Color.BLACK);
+            }
 
-        top_valueDisplay.setText(cardValue);
-        bottom_valueDisplay.setText(cardValue);
-        top_iconDisplay.setImageResource(cardImageResource);
-        center_iconDisplay.setImageResource(cardImageResource);
-        bottom_iconDisplay.setImageResource(cardImageResource);
+            top_valueDisplay.setText(cardValue);
+            bottom_valueDisplay.setText(cardValue);
+            top_iconDisplay.setImageResource(cardImageResource);
+            center_iconDisplay.setImageResource(cardImageResource);
+            bottom_iconDisplay.setImageResource(cardImageResource);
+        }
+        else
+        {
+            finish();
+        }
     }
 }
