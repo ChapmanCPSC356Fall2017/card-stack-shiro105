@@ -25,6 +25,27 @@ public class Card {
         return suitType;
     }
 
+    // Returns the face card representation if applicable
+    public String getFaceCardValue()
+    {
+        String result = "";
+        switch(cardNumber)
+        {
+            case 1:
+                result = "A";
+                break;
+            case 11:
+                result = "J";
+                break;
+            case 12:
+                result = "Q";
+                break;
+            case 13:
+                result = "K";
+                break;
+        }
+        return result;
+    }
 
     public boolean compareCards(Card other)
     {

@@ -1,10 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="cpsc356.cardstackapp.MainActivity">
 
+    <TextView
+        android:id="@+id/top_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:paddingStart="9dp"
+        android:paddingEnd="9dp"
+        tools:text="Value"
+        />
 
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/top_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/heart"
+        />
+
+    <ImageView
+        android:id="@+id/center_icon"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:padding="50dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/heart"
+        />
+
+    <ImageView
+        android:id="@+id/bottom_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="-10dp"
+        android:scaleY="-1"
+        android:src="@drawable/heart"
+        />
+
+    <TextView
+        android:id="@+id/bottom_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:paddingStart="9dp"
+        android:paddingEnd="9dp"
+        android:layout_gravity="end"
+        android:scaleY="-1"
+        tools:text="Value"
+        />
+
+
+</LinearLayout>
