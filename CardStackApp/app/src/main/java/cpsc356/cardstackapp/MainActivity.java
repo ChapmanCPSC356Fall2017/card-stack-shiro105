@@ -1,5 +1,6 @@
 package cpsc356.cardstackapp;
 
+import android.content.pm.ActivityInfo;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // We prevent the user from rotating the app
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         top_valueDisplay = (TextView) findViewById(R.id.top_value);
         bottom_valueDisplay = (TextView) findViewById(R.id.bottom_value);
